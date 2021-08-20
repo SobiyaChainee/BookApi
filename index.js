@@ -54,4 +54,15 @@ OurAPP.get("/book/c/:category", (req, res) => {
 
 });
 
+
+//Route     - /author
+//Description - to get all authors
+//Access    - public
+//Method    - get
+//Params    - none
+//body      - none
+OurAPP.get("/author", (req, res) => {
+    return res.json({ author: Database.Author });
+});
+
 OurAPP.listen(4000, () => console.log("Server is running"));

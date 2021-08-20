@@ -29,7 +29,7 @@ Book
   -to get all books ✅
   -to get specific books ✅
   -to get a list of books based on category ✅
-  -to get a list of books based on author
+  -to get a list of books based on author [task]
 
  -POST
  -to add new books
@@ -47,8 +47,8 @@ Book
 Authors 
 
  -GET
-  -to get all authors
-  -to get specific author
+  -to get all authors ✅
+  -to get specific author [task]
   -to get list author based on a book
 
  -POST
