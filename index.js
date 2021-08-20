@@ -1,10 +1,18 @@
 const express = require("express");
 
-//Initialization of App
-const OurApp = express();
+//database
+const Database = require("./database");
 
-OurApp.get("/", (request, response) => {
-    response.json({ message: "Request served!!!!!" });
+//Initialization of App
+const OurAPP = express();
+
+
+OurAPP.get("/", (request, response) => {
+    response.json({ message: "Server is working!!!!!" });
 });
 
-OurApp.listen(4000, () => console.log("Server is running"));
+OurAPP.get("/book", (req, res) => {
+    return res.json({ books: Database.Book });
+});
+
+OurAPP.listen(4000, () => console.log("Server is running"));
