@@ -32,11 +32,11 @@ Book
   -to get a list of books based on author [task]
 
  -POST
- -to add new books
+ -to add new books ✅
 
  -PUT
-  -to update book details
-  -to update/add new author
+  -to update book details ✅
+  -to update/add new author ✅
   
 
  -DELETE
@@ -52,11 +52,11 @@ Authors
   -to get list author based on a book
 
  -POST
-  -to add new author
+  -to add new author ✅
   -to update/add new book
 
  -PUT
-  -update author details
+  -update author details ✅
 
  -DELETE
   -delete an author
@@ -68,10 +68,10 @@ Publication
   -to get a list of publication based on a book
  
  -POST
-  -add new publication
+  -add new publication ✅
 
  -PUT
-  -update publication
+  -update publication 
   -to update/add new book
 
  -DELETE
