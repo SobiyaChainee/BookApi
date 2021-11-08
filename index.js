@@ -1,7 +1,19 @@
+require('dotenv').config();
 const express = require("express");
+
+const mongoose = require("mongoose");
+
 
 //database
 const Database = require("./database");
+
+mongoose.connect(
+        process.env.MONGO_URI
+    )
+    .then(() => console.log('connection extablished!'))
+    .catch((err) => {
+        console.log(err);
+    });
 
 //Initialization of App
 const OurAPP = express();
