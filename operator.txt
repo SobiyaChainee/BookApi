@@ -1,0 +1,20 @@
+Basic operators which you find in javascript are
+1. Arithmetic Operators (+, -, /, *, %, ++, --,  )
+2. Comparison (Relational) Operators (==, ===, !=, !==, >, >=, <, <=)
+3. Bitwise Operators (&, |, <<, >>)
+4. Logical Operators (&&, ||, !)
+5. Assignment Operators (=, +=, -=, *=, /=, %=)
+
+MongoDB Operator  -> Powerfull yet devs won't use them
+
+Arrays [2,3,4]
+$push
+$pop
+$pull example:  $pull{ authors: 1 }
+$addToSet -> clever way of pushing data into array
+
+$inc 
+$min
+$max
+$set 
+$unset
