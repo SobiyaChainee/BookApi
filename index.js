@@ -3,11 +3,16 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 
+//importing different schemas
+const Book = require('./schema/book');
+const Author = require('./schema/author');
+const publication = require('./schema/publication');
 
 //database
 const Database = require("./database");
 
-mongoose.connect(
+mongoose
+    .connect(
         process.env.MONGO_URI
     )
     .then(() => console.log('connection extablished!'))
@@ -31,8 +36,9 @@ OurAPP.get("/", (request, response) => { //callback function
 //Method    - get
 //Params    - none
 //body      - none
-OurAPP.get("/book", (req, res) => {
-    return res.json({ books: Database.Book });
+OurAPP.get("/book", async(req, res) => {
+    const getAllBooks = await Book.find();
+    return res.json(getAllBooks);
 });
 
 
@@ -42,12 +48,15 @@ OurAPP.get("/book", (req, res) => {
 //Method    - get
 //Params    - bookID
 //body      - none
-OurAPP.get("/book/:bookID", (req, res) => {
-    const getBook = Database.Book.filter(
-        (book) => book.ISBN === req.params.bookID
-    );
+OurAPP.get("/book/:bookID", async(req, res) => {
+    const getSpecificBook = await Book.findOne({ ISBN: req.params.bookID });
 
-    return res.json({ book: getBook });
+    if (!getSpecificBook) {
+        return res.json({
+            errror: `No book found for the ISBN of ${req.params.bookID}`
+        });
+    }
+    return res.json({ book: getSpecificBook });
 });
 
 
@@ -92,14 +101,16 @@ OurAPP.get("/author", (req, res) => {
 //Access        -public
 //Paramameter   -none
 //method        -post
-OurAPP.post("/book/new", (req, res) => {
-    const { newBook } = req.body;
+OurAPP.post("/book/new", async(req, res) => {
+    try {
+        const { newBook } = req.body;
 
-    Database.Book.push(newBook);
+        await Book.create(newBook);
+        return res.json({ message: 'Book added to the database' });
 
-    //console.log(req.body);
-
-    return res.json(Database.Book);
+    } catch (error) {
+        return res.json({ error: error.message });
+    }
 });
 
 //Route         -/author/new
@@ -153,7 +164,7 @@ OurAPP.put("/book/update/:isbn", (req, res) => {
 //Access        -public
 //Parametes     -isbn
 //Mathod        -PUT
-OurAPP.put("/book /updateTitle/:isbn", (req, res) => {
+OurAPP.put("/book/updateTitle/:isbn", (req, res) => {
     const { updatedBook } = req.body;
     const { isbn } = req.params;
 
